@@ -16,3 +16,10 @@ canvas{display:block;touch-action:none;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+@media print {
+  body * { visibility: hidden; }
+  .no-print { display: none !important; }
+  #certificate, #certificate * { visibility: visible; }
+  #certificate { position: absolute; left: 0; top: 0; width: 100vw !important; height: 100vh !important; display: flex !important; }
+}

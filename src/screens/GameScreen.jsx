@@ -4,6 +4,8 @@ import { LEVEL_QUESTIONS } from '../data/levels.js';
 import { drawAvatar } from '../utils/drawAvatar.js';
 import { drawObstacle } from '../utils/drawObstacle.js';
 import { drawScene } from '../utils/drawScene.js';
+import { playDing, playBuzz, playPop } from '../utils/audio.js';
+import AIAssistant from '../components/AIAssistant.jsx';
 
 const formatXP = (n) => n >= 1000 ? `${(n / 1000).toFixed(1)}K` : n;
 
@@ -160,6 +162,7 @@ export default function GameScreen({ category, subcategory, onBack }) {
   // ── QUIZ TRIGGER ─────────────────────────────────────────────────────────────
   function openQuiz() {
     if (gs.phase === 'quiz' || showQuiz) return;
+    playPop();
     setGsSafe({ phase: 'quiz' });
     setQuizState({ selected: null, revealed: false });
     setShowQuiz(true);
@@ -175,6 +178,7 @@ export default function GameScreen({ category, subcategory, onBack }) {
     setQuizState({ selected: choiceIdx, revealed: true, correct: isCorrect });
 
     if (isCorrect) {
+      playDing();
       const xpGain = 80 + gs.level * 20 + gs.streak * 10;
       const newProgress = Math.min(100, gs.obstacleProgress + 34);
       const newStreak = gs.streak + 1;
@@ -193,11 +197,14 @@ export default function GameScreen({ category, subcategory, onBack }) {
 
       setTimeout(() => {
         setShowQuiz(false);
+        setShowAdvisor(false);
         if (newProgress >= 100) {
           setTimeout(() => setShowLevelUp(true), 600);
         }
-      }, 2200);
+      }, 2500);
     } else {
+      playBuzz();
+      setShowAdvisor(true);
       const newLives = gs.lives - 1;
       setGsSafe(prev => ({
         ...prev,
@@ -207,10 +214,11 @@ export default function GameScreen({ category, subcategory, onBack }) {
       }));
       setTimeout(() => {
         setShowQuiz(false);
+        setShowAdvisor(false);
         if (newLives <= 0) {
           setGsSafe({ phase: 'gameOver' });
         }
-      }, 2200);
+      }, 3500); // Give them time to read the AI advice
     }
   }
 
@@ -267,9 +275,30 @@ export default function GameScreen({ category, subcategory, onBack }) {
             </div>
           ))}
         </div>
-        <button className="btn" onClick={onBack} style={{ padding: '15px 44px', background: 'linear-gradient(135deg,#008751,#00c46b)', color: '#fff', borderRadius: 99, fontSize: 16, fontFamily: 'Fraunces, serif', boxShadow: '0 8px 26px rgba(0,135,81,.4)' }}>
-          Play Again 🔄
-        </button>
+        <div className="no-print" style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+          <button className="btn" onClick={onBack} style={{ padding: '15px 44px', background: 'linear-gradient(135deg,#008751,#00c46b)', color: '#fff', borderRadius: 99, fontSize: 16, fontFamily: 'Fraunces, serif', boxShadow: '0 8px 26px rgba(0,135,81,.4)' }}>
+            Play Again 🔄
+          </button>
+          {won && (
+            <button className="btn" onClick={() => window.print()} style={{ padding: '15px 44px', background: 'rgba(255,255,255,.1)', color: '#A78BFA', border: '1px solid rgba(167,139,250,.4)', borderRadius: 99, fontSize: 16, fontFamily: 'Fraunces, serif' }}>
+               Download Certificate 🎓
+            </button>
+          )}
+        </div>
+
+        {won && (
+          <div id="certificate" style={{ display: 'none', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: '#fff', color: '#000', padding: '40px', border: '10px solid #008751', textAlign: 'center' }}>
+            <h1 style={{ fontFamily: 'Fraunces, serif', fontSize: '48px', color: '#008751', marginBottom: '20px' }}>Certificate of Compliance</h1>
+            <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '24px', marginBottom: '30px' }}>This certifies that</p>
+            <h2 style={{ fontFamily: 'Fraunces, serif', fontSize: '40px', marginBottom: '30px', borderBottom: '2px solid #000', display: 'inline-block', paddingBottom: '10px', color: '#000' }}>Nigerian Professional</h2>
+            <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: '20px', marginBottom: '40px' }}>has successfully completed all 13 levels as a {subcategory?.label} and demonstrated mastery of Nigerian Business Regulations.</p>
+            <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%', marginTop: '40px', fontFamily: 'DM Sans, sans-serif' }}>
+              <div style={{ borderTop: '2px solid #000', paddingTop: '10px', fontWeight: 'bold' }}>ComplyNG System</div>
+              <div style={{ borderTop: '2px solid #000', paddingTop: '10px', fontWeight: 'bold' }}>Date: {new Date().toLocaleDateString()}</div>
+            </div>
+          </div>
+        )}
+
       </div>
     );
   }
@@ -473,6 +502,15 @@ export default function GameScreen({ category, subcategory, onBack }) {
             {gs.level >= 13 ? '🏆 Claim Legend Status!' : `Enter Level ${gs.level + 1}: ${LEVELS[gs.level]?.title || ''} →`}
           </button>
         </div>
+      )}
+
+      {/* ── AI ADVISOR MODAL ── */}
+      {showAdvisor && currentLevelQ && (
+        <AIAssistant 
+          message={currentLevelQ.tip + (!quizState.correct ? " Let's review " + currentLevelQ.law + "." : "")}
+          isWrong={!quizState.correct}
+          onClose={() => setShowAdvisor(false)} 
+        />
       )}
     </div>
   );

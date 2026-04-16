@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-export default function SplashScreen({ onStart }) {
+export default function SplashScreen({ onStart, onLeaderboard, onRegulator }) {
   const [vis, setVis] = useState(false);
   useEffect(() => { setTimeout(() => setVis(true), 80); }, []);
   return (
@@ -20,10 +20,23 @@ export default function SplashScreen({ onStart }) {
             <span key={t} style={{background:'rgba(255,255,255,.06)',border:'1px solid rgba(255,255,255,.1)',color:'rgba(255,255,255,.55)',fontSize:11,fontWeight:600,padding:'4px 10px',borderRadius:99}}>{t}</span>
           ))}
         </div>
-        <button className="btn" onClick={onStart} style={{background:'linear-gradient(135deg,#008751,#00c46b)',color:'#fff',fontSize:19,padding:'17px 54px',borderRadius:99,boxShadow:'0 8px 32px rgba(0,135,81,.5)',fontFamily:'Fraunces,serif',animation:'bounce 2.5s ease-in-out infinite'}}>
-          Play Now 🎮
-        </button>
-        <p style={{color:'rgba(255,255,255,.2)',fontSize:10,marginTop:22,letterSpacing:2}}>MICROSOFT AI SKILLS WEEK 2026 · REGTECH HACKATHON</p>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', alignItems: 'center' }}>
+          <button className="btn" onClick={onStart} style={{width: 240, background:'linear-gradient(135deg,#008751,#00c46b)',color:'#fff',fontSize:19,padding:'17px 0',borderRadius:99,boxShadow:'0 8px 32px rgba(0,135,81,.5)',fontFamily:'Fraunces,serif',animation:'bounce 2.5s ease-in-out infinite'}}>
+            Play Now 🎮
+          </button>
+          
+          <div style={{ display: 'flex', gap: '12px' }}>
+            <button className="btn" onClick={onLeaderboard} style={{ width: 114, background:'rgba(255,255,255,.1)', border: '1px solid rgba(255,255,255,.15)', color:'#fff',fontSize:13,padding:'12px 0',borderRadius:99}}>
+              Leaderboard
+            </button>
+            <button className="btn" onClick={onRegulator} style={{ width: 114, background:'rgba(255,255,255,.1)', border: '1px solid rgba(255,255,255,.15)', color:'#A78BFA',fontSize:13,padding:'12px 0',borderRadius:99}}>
+              B2G Data
+            </button>
+          </div>
+        </div>
+        
+        <p style={{color:'rgba(255,255,255,.2)',fontSize:10,marginTop:32,letterSpacing:2}}>MICROSOFT AI SKILLS WEEK 2026 · REGTECH HACKATHON</p>
       </div>
     </div>
   );
