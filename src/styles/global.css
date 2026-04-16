@@ -16,6 +16,17 @@ canvas{display:block;touch-action:none;}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes xpFloat{0%{transform:translateX(-50%) translateY(0) scale(.8);opacity:0}20%{opacity:1;transform:translateX(-50%) translateY(0) scale(1.2)}80%{opacity:1;transform:translateX(-50%) translateY(-60px) scale(1)}100%{opacity:0;transform:translateX(-50%) translateY(-90px) scale(.9)}}
+@keyframes confettiFall{0%{transform:translateY(-10px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes achieveIn{0%{transform:translateY(100px);opacity:0}60%{transform:translateY(-8px)}100%{transform:translateY(0);opacity:1}}
+@keyframes achieveOut{0%{transform:translateY(0);opacity:1}100%{transform:translateY(100px);opacity:0}}
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+@keyframes spinPop{0%{transform:scale(0) rotate(-180deg);opacity:0}60%{transform:scale(1.3) rotate(10deg)}100%{transform:scale(1) rotate(0deg);opacity:1}}
+@keyframes timerPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@keyframes slideDown{0%{transform:translateY(0);opacity:1}100%{transform:translateY(100px);opacity:0}}
+@keyframes factReveal{0%{transform:scale(.92);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.3)}28%{transform:scale(1)}}
+@keyframes streakFire{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.15)}}
 
 @media print {
   body * { visibility: hidden; }
