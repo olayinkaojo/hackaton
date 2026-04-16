@@ -1,19 +1,18 @@
 {
-  "name": "complyng-sim",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "complyng",
+  "version": "1.0.0",
+  "description": "ComplyNG — Nigerian Business Compliance Adventure Game",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 3000",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^4.3.1",
-    "vite": "^5.4.10"
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.1.4"
   }
 }

@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Sans:wght@400;500;600;700;800&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html,body{height:100%;overflow:hidden;background:#050810;}
+body{font-family:'DM Sans',sans-serif;color:#fff;}
+#root{width:100%;height:100dvh;max-width:430px;margin:0 auto;position:relative;overflow:hidden;display:flex;flex-direction:column;background:#050810;}
+.btn{cursor:pointer;border:none;font-family:'DM Sans',sans-serif;font-weight:700;transition:transform .12s,opacity .12s;}
+.btn:active{transform:scale(.95);}
+.btn:disabled{opacity:.4;cursor:not-allowed;}
+.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.scroll::-webkit-scrollbar{width:3px;}
+.scroll::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:99px;}
+canvas{display:block;touch-action:none;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{transform:translateY(50px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes pop{0%{transform:scale(.7);opacity:0}70%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
