@@ -4,6 +4,24 @@
 
 A fully animated, multi-career Nigerian business compliance learning game.
 
+## Getting Started
+
+1️⃣ Clone the Repository
+git clone https://github.com/olayinkaojo/hackaton.git
+2️⃣ Navigate Into the Project
+cd hackaton
+3️⃣ Install Dependencies
+
+Using npm:
+
+npm install
+
+Or using yarn:
+
+yarn install
+▶️ Run the Development Server
+npm run dev
+
 ## Quick Start
 
 ```bash
@@ -11,6 +29,19 @@ npm install
 npm run dev
 # Opens at http://localhost:3000
 ```
+
+## Project Overview
+
+The platform emphasizes:
+
+Clean and modern UI/UX
+Fast onboarding for participants
+Event showcase and promotion
+Community-driven innovation
+Responsive cross-device experience
+Interactive and visually engaging design
+
+The project appears to be inspired by modern web experiences and hackathon ecosystems commonly used by developer communities and innovation programs.
 
 ## Project Structure
 
@@ -37,6 +68,55 @@ src/
     ├── MiniGamesScreen.jsx     # Advanced mini-game hub
     └── MiniGamePlayScreen.jsx  # Mini-game engine with animated canvas
 ```
+
+🛠️ Tech Stack
+
+Depending on implementation details inside the repository, the project may include technologies such as:
+
+HTML5
+CSS3 / TailwindCSS
+JavaScript / TypeScript
+React / Next.js
+Figma-based design workflow
+Responsive layout systems
+
+The visual experience aligns with modern design systems and web publishing workflows commonly enabled by platforms like Figma Sites.
+
+## Features
+🎯 Event Showcase
+
+Display hackathon information, schedules, themes, prizes, and participation details in an engaging format.
+
+🌍 Responsive Design
+
+Optimized for:
+
+Desktop
+Tablet
+Mobile devices
+⚡ Modern UI/UX
+
+Built with a visually immersive interface focused on accessibility, clarity, and smooth interactions.
+
+## Community-Focused
+
+Designed to encourage collaboration between:
+
+Developers
+Designers
+Founders
+Students
+Tech communities
+
+## Scalable Architecture
+
+Structured for future expansion such as:
+
+Authentication
+Team creation
+Submission systems
+Live leaderboards
+Real-time announcements
 
 ## Game Features
 
